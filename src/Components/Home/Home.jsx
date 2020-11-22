@@ -62,6 +62,15 @@ const Home = () => {
         prevText.current = searchText;
     }, [searchText, prevText, getData, dispatch]);
 
+    useEffect(() => {
+        Axios.get('beers', { params: { page: 1 } }).then(res => {
+            let items = res.data;
+            items.forEach(item => item.favourite = false);
+            dispatch(setItems(items));
+            page.current += 1;
+        }).catch(err => console.log(err));
+    }, []);
+
     return (
         <>
             <div className="searchBar">
@@ -69,19 +78,17 @@ const Home = () => {
                 {searchText !== '' && doSearch.current ? <i className="fas fa-times" onClick={() => setSearchText('')}></i> : null}
                 <button onClick={searchItems}>Search</button>
             </div>
-            <div className="home">
-                <InfiniteScroll
-                    dataLength={allItems.length}
-                    next={getData}
-                    hasMore={true}
-                    loader={<h4>Loading...</h4>}
-                    className='home-items'
-                >
-                    {
-                        allItems.map(item => <BeerCard item={item} key={item.id} showActions={true} />)
-                    }
-                </InfiniteScroll>
-            </div>
+            <InfiniteScroll
+                dataLength={allItems.length}
+                next={getData}
+                hasMore={true}
+                loader={<h4>Loading...</h4>}
+                className='home-items'
+            >
+                {
+                    allItems.map(item => <BeerCard item={item} key={item.id} showActions={true} />)
+                }
+            </InfiniteScroll>
         </>
     );
 };

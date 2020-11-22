@@ -1,8 +1,11 @@
 import { SET_ITEMS, SET_FAVOURITE, EDIT_ITEM, DELETE_ITEM, SEARCH_ITEM, CLEAR_ITEMS } from './Actions';
+import { uniqBy } from 'lodash';
 
 export const setItemReducer = (state = [], action) => {
     switch (action.type) {
-        case SET_ITEMS: return [...new Set([...state, ...action.items])];
+        case SET_ITEMS: return uniqBy([...state, ...action.items], (e) => {
+            return e.id;
+        });
 
         case CLEAR_ITEMS: return [];
 
