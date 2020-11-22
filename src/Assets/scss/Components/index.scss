@@ -1,0 +1,11 @@
+@import './Header.scss';
+@import './Home.scss';
+@import './BeerCard.scss';
+@import './SearchBar.scss';
+@import './Favourites.scss';
+
+.infinite-scroll-component__outerdiv {
+    padding-top: 20px;
+    height: auto;
+    overflow: auto;
+}

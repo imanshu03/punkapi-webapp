@@ -1,0 +1,33 @@
+.header {
+    position: fixed;
+    background-color: #00d1b2;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 80px;
+    box-sizing: border-box;
+
+    & > h2 {
+        margin: 0;
+        color: white;
+        font-size: 2vw;
+    }
+
+    & > .links {
+        display: flex;
+        align-items: center;
+
+        a {
+            margin: 0px 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5vw;
+            box-sizing: border-box;
+        }
+        .active {
+            border-bottom: 2px solid white;
+        }
+    }
+}
